@@ -1,13 +1,13 @@
 <script lang="ts">
-  import svelteLogo from './assets/svelte.svg'
   import AboutSection from './lib/AboutSection.svelte';
-  import Counter from './lib/Counter.svelte'
   import NameSection from './lib/NameSection.svelte';
+  import ProjectSection from './lib/ProjectSection.svelte';
 </script>
 
 <main>
   <NameSection />  
   <AboutSection />
+  <ProjectSection />
 </main>
 
 <style>
