@@ -59,15 +59,13 @@
     object-fit: cover;
     z-index: 0;
     opacity: 0.8;
-    transition: 0.5s ease-in-out;
+    transition: 0.2s linear;
     transition-property: opacity, transform;
   }
 
   .project img:hover {
     position: relative;
-    /* transform: scale(1.05); */
-
-    transform: scale(1.5);
+    /* transform: scale(1.5); */
     z-index: 3;
     opacity: 1;
   }

@@ -11,8 +11,8 @@ const projects = [
     description:
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut hic vel nam earum molestiae eos, sequi quae adipisci possimus dolorem doloribus temporibus illum non consequatur! Officiis non eligendi doloremque qui.",
     skills: ["React", "TypeScript", "Algorithms"],
-    githubLink: "https://github.com",
-    liveLink: "https://github.com",
+    githubLink: "https://github.com/jordanlandry/chess-with-minimax",
+    liveLink: "https://jordanlandry.github.io/chess-with-minimax",
     image: chessImage,
   },
   {
@@ -56,7 +56,7 @@ const projects = [
     description:
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut hic vel nam earum molestiae eos, sequi quae adipisci possimus dolorem doloribus temporibus illum non consequatur! Officiis non eligendi doloremque qui.",
     skills: ["TypeScript", "Algorithms", "Three.js"],
-    githubLink: "github.com/jordanlandry/rubiks-cube-solver",
+    githubLink: "https://github.com/jordanlandry/rubiks-cube-solver",
     liveLink: "https://jordanlandry.github.io/rubiks-cube-solver/",
     image: rubiksCubeImage,
   },
