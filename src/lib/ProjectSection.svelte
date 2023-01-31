@@ -4,16 +4,20 @@
 
 </script>
 
-<div class=section>
-  <h2>My Works</h2>
-  <div class=project-wrapper>
+<div class="project-wrapper section">
+  <div class=projects>
     {#each projects as project, i}
-    <Project {...project} comesFromLeft={i % 2 === 0} />
+    <Project {...project} index={i} />
     {/each}
   </div>
 </div>
 
 <style>
+  /* .project-title {
+    font-size: 5rem;
+    margin: 0;
+  } */
+
   .project-wrapper {
     display: flex;
     justify-content: center;
@@ -24,4 +28,9 @@
     gap: 10rem;
   }
 
+  .projects {
+    display: flex;
+    flex-direction: column;
+    gap: 25rem;
+  }
 </style>

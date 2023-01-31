@@ -13,7 +13,7 @@ const projects = [
     skills: ["React", "TypeScript", "Algorithms"],
     githubLink: "https://github.com/jordanlandry/chess-with-minimax",
     liveLink: "https://jordanlandry.github.io/chess-with-minimax",
-    image: chessImage,
+    images: [chessImage, janninScriptImage, netflixImage],
   },
   {
     name: "JanninScript",
@@ -22,7 +22,7 @@ const projects = [
     skills: ["C++", "Vue", "TypeScript"],
     githubLink: "https://github.com/jordanlandry/janninscript",
     liveLink: "https://jordanlandry.github.io/janninscript-online/",
-    image: janninScriptImage,
+    images: [janninScriptImage, netflixImage],
   },
   {
     name: "Apple Website Clone",
@@ -31,7 +31,7 @@ const projects = [
     skills: ["React", "TypeScript", "Animations", "CSS"],
     githubLink: "https://github.com/jordanlandry/apple-website-clone",
     liveLink: "https://jordanlandry.github.io/apple-website-clone/",
-    image: appleImage,
+    images: [appleImage, netflixImage],
   },
   {
     name: "Netflix Redesign",
@@ -40,7 +40,7 @@ const projects = [
     skills: ["React", "TypeScript", "Algorithms", "Data Structures"],
     githubLink: "https://github.com/jordanlandry/netflix-redesign",
     liveLink: "https://jordanlandry.github.io/netflix-redesign/",
-    image: netflixImage,
+    images: [netflixImage, netflixImage],
   },
   {
     name: "Minecraft In C++",
@@ -49,7 +49,7 @@ const projects = [
     skills: ["C++", "OpenGL", "Algorithms"],
     githubLink: "https://github.com/jordanlandry/minecraft-in-cpp",
     liveLink: "",
-    image: minecraftImage,
+    images: [minecraftImage, netflixImage],
   },
   {
     name: "Rubiks Cube Solver",
@@ -58,7 +58,7 @@ const projects = [
     skills: ["TypeScript", "Algorithms", "Three.js"],
     githubLink: "https://github.com/jordanlandry/rubiks-cube-solver",
     liveLink: "https://jordanlandry.github.io/rubiks-cube-solver/",
-    image: rubiksCubeImage,
+    images: [rubiksCubeImage, netflixImage],
   },
 ];
 

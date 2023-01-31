@@ -1,36 +1,51 @@
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
+  import { get_custom_elements_slots } from "svelte/internal";
 
   export let name: string;
   export let description: string;
   export let githubLink: string;
   export let liveLink: string;
-  export let image: string;
-  export let comesFromLeft: boolean;
+  export let images: string[];
   export let skills: string[];
+  export let index: number;
 
-  let className = "";
+  let show = true;
 
-  function actionWhenInViewport(e: any) {
-  const observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) className = comesFromLeft ? "project-left" : "project-right"
+
+  const imageScrollSpeeds = images.map((_, i) =>  1 + (0.5 * i));
+  let scrollPercent = 0;
+
+  let fixPosition = false;
+  let element:HTMLElement = null;
+  const handleScroll = (e:any) => {
+    const { top, height, bottom } = element.getBoundingClientRect();
+    if (top < window.innerHeight / 4 && bottom > height / images.length) fixPosition = true;
+    else fixPosition = false;
+
+    scrollPercent = (top / height) * 100;
+  }
+
+  onMount(() => {
+    window.addEventListener('scroll', handleScroll); 
+    element = document.getElementById("project-" + index);
   });
 
-  observer.observe(e);
-}
+  onDestroy(() => {
+    window.removeEventListener('scroll', handleScroll);
+  });
+  
 
 </script>
 
-<div use:actionWhenInViewport class="{className} project">
-  {#if comesFromLeft}
-    <div>
-      <img src={image} alt={name} />
-    </div>
+<div class=project id="project-{index}">
+  {#if fixPosition}
+    <div class=invisible></div>
   {/if}
 
-  <div class=project-info>
+  <div class="project-info {fixPosition ? "project-info-fixed" : ""}">
     <h3>{name}</h3>
-    <p class=project-description>{description}</p>
+    <p>{description}</p>
     <ul class="unstyled-list project-skills">
       {#each skills as skill}
         <li>{skill}</li>
@@ -40,106 +55,46 @@
     <a href={liveLink} rel=noreferrer target=_blank>Live</a>
   </div>
 
-  {#if !comesFromLeft}
-    <div>
-      <img src={image} alt={name} />
-    </div>
-  {/if}
+  <div>
+    {#each images as image, i}
+      <!-- <img src={image} alt={name} class=project-image style="transform: translateY({500 - scrollPercent * imageScrollSpeeds[i]}px)" /> -->
+      <img src={image} alt={name} class=project-image />
+    {/each}
+  </div>
 </div>
 
 <style>
+  .project-info-fixed {
+    position: fixed;
+    top: 25%;
+    width: min(1000px, 37%);
+  }
+
+  .invisible {
+    width: 50%;
+    height: 100%;
+
+    opacity: 0;
+  }
+
   .project {
-    display: flex;
-    justify-content: center;
-    flex: 1 1 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+
+  p {
+    font-size: 1.5rem;
   }
 
   .project img {
     width: 100%;
     object-fit: cover;
-    z-index: 0;
-    opacity: 0.8;
-    transition: 0.2s linear;
-    transition-property: opacity, transform;
-  }
-
-  .project img:hover {
-    position: relative;
-    /* transform: scale(1.5); */
-    z-index: 3;
-    opacity: 1;
-  }
-
-  .project-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
   }
 
   .project-info > h3 {
-    font-size: 3rem;
-  }
-
-  .project-right {
-    animation: slideInFromRight 1s ease-in-out forwards;
+    font-size: 3.5rem;
+    font-weight: 100;
   }
   
-  .project-left {
-    animation: slideInFromLeft 1s ease-in-out forwards;
-  }
-
-  .project-right > .project-info {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-  }
-
-  .project-skills {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .project-skills > li {
-    background-color: rgb(22, 22, 22);
-    padding: 5px 10px;
-    border-radius: 5px;
-  }
-
-  .project-description {
-    background-color: rgb(0, 0, 0);
-    color: white;
-    padding: 30px;
-
-    width: 110%;
-
-    z-index: 2;
-  }
-
-  @keyframes slideInFromLeft {
-    0% {
-      transform: translateX(-25%);
-      opacity: 0;
-    }
-
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes slideInFromRight {
-    0% {
-      transform: translateX(25%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
 </style>

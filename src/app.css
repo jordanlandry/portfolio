@@ -10,6 +10,10 @@ h3 {
   margin: 0;
 }
 
+body {
+  margin: 0;
+}
+
 .unstyled-list {
   list-style: none;
   padding: 0;
@@ -17,7 +21,7 @@ h3 {
 
 .section {
   padding: 2rem 0;
-  width: min(2000px, 70%);
+  width: min(2000px, 75%) !important;
   margin: 0 auto;
 
   z-index: 1;
