@@ -28,19 +28,17 @@
     </div>
   {/if}
 
-  <div>
+  <div class=project-info>
     <h3>{name}</h3>
-    <p>{description}</p>
-    <a href={githubLink} rel=noreferrer target=_blank>Github</a>
-    <a href={liveLink} rel=noreferrer target=_blank>Live</a>
-    <p>comesFromLeft: {comesFromLeft}</p>
-    <ul>
+    <p class=project-description>{description}</p>
+    <ul class="unstyled-list project-skills">
       {#each skills as skill}
         <li>{skill}</li>
       {/each}
     </ul>
+    <a href={githubLink} rel=noreferrer target=_blank>Github</a>
+    <a href={liveLink} rel=noreferrer target=_blank>Live</a>
   </div>
-
 
   {#if !comesFromLeft}
     <div>
@@ -55,12 +53,54 @@
     justify-content: center;
   }
 
+  .project-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .project-info > h3 {
+    font-size: 2rem;
+  }
+
   .project-right {
     animation: slideInFromRight 1s ease-in-out forwards;
   }
   
   .project-left {
     animation: slideInFromLeft 1s ease-in-out forwards;
+  }
+
+  .project-right > .project-info {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+  }
+
+  .project-skills {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .project-skills > li {
+    background-color: rgb(22, 22, 22);
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+
+  .project-description {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    padding: 30px;
+
+    width: 110%;
+
+    z-index: 1;
   }
 
   @keyframes slideInFromLeft {
