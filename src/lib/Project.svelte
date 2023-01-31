@@ -51,6 +51,25 @@
   .project {
     display: flex;
     justify-content: center;
+    flex: 1 1 auto;
+  }
+
+  .project img {
+    width: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.8;
+    transition: 0.5s ease-in-out;
+    transition-property: opacity, transform;
+  }
+
+  .project img:hover {
+    position: relative;
+    /* transform: scale(1.05); */
+
+    transform: scale(1.5);
+    z-index: 3;
+    opacity: 1;
   }
 
   .project-info {
@@ -61,7 +80,7 @@
   }
 
   .project-info > h3 {
-    font-size: 2rem;
+    font-size: 3rem;
   }
 
   .project-right {
@@ -100,7 +119,7 @@
 
     width: 110%;
 
-    z-index: 1;
+    z-index: 2;
   }
 
   @keyframes slideInFromLeft {

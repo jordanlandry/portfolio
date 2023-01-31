@@ -1,3 +1,10 @@
+import appleImage from "../assets/apple-website-clone.png";
+import chessImage from "../assets/chess.png";
+import netflixImage from "../assets/netflix.png";
+import minecraftImage from "../assets/minecraft.png";
+import rubiksCubeImage from "../assets/rubiks-cube.png";
+import janninScriptImage from "../assets/jannin-script.png";
+
 const projects = [
   {
     name: "Chess With Minimax",
@@ -6,7 +13,7 @@ const projects = [
     skills: ["React", "TypeScript", "Algorithms"],
     githubLink: "https://github.com",
     liveLink: "https://github.com",
-    image: "https://via.placeholder.com/1280x720",
+    image: chessImage,
   },
   {
     name: "JanninScript",
@@ -15,7 +22,7 @@ const projects = [
     skills: ["C++", "Vue", "TypeScript"],
     githubLink: "https://github.com/jordanlandry/janninscript",
     liveLink: "https://jordanlandry.github.io/janninscript-online/",
-    image: "https://via.placeholder.com/1280x720",
+    image: janninScriptImage,
   },
   {
     name: "Apple Website Clone",
@@ -24,7 +31,7 @@ const projects = [
     skills: ["React", "TypeScript", "Animations", "CSS"],
     githubLink: "https://github.com/jordanlandry/apple-website-clone",
     liveLink: "https://jordanlandry.github.io/apple-website-clone/",
-    image: "https://via.placeholder.com/1280x720",
+    image: appleImage,
   },
   {
     name: "Netflix Redesign",
@@ -33,7 +40,7 @@ const projects = [
     skills: ["React", "TypeScript", "Algorithms", "Data Structures"],
     githubLink: "https://github.com/jordanlandry/netflix-redesign",
     liveLink: "https://jordanlandry.github.io/netflix-redesign/",
-    image: "https://via.placeholder.com/1280x720",
+    image: netflixImage,
   },
   {
     name: "Minecraft In C++",
@@ -42,7 +49,7 @@ const projects = [
     skills: ["C++", "OpenGL", "Algorithms"],
     githubLink: "https://github.com/jordanlandry/minecraft-in-cpp",
     liveLink: "",
-    image: "https://via.placeholder.com/1280x720",
+    image: minecraftImage,
   },
   {
     name: "Rubiks Cube Solver",
@@ -51,7 +58,7 @@ const projects = [
     skills: ["TypeScript", "Algorithms", "Three.js"],
     githubLink: "github.com/jordanlandry/rubiks-cube-solver",
     liveLink: "https://jordanlandry.github.io/rubiks-cube-solver/",
-    image: "https://via.placeholder.com/1280x720",
+    image: rubiksCubeImage,
   },
 ];
 

@@ -4,7 +4,7 @@
 
 </script>
 
-<div>
+<div class=section>
   <h2>My Works</h2>
   <div class=project-wrapper>
     {#each projects as project, i}
@@ -12,7 +12,6 @@
     {/each}
   </div>
 </div>
-
 
 <style>
   .project-wrapper {

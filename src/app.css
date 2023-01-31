@@ -1,6 +1,6 @@
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  color: white;
+  overflow-x: hidden;
 }
 
 h1,
@@ -12,4 +12,10 @@ h3 {
 .unstyled-list {
   list-style: none;
   padding: 0;
+}
+
+.section {
+  padding: 2rem 0;
+  width: min(2000px, 70%);
+  margin: 0 auto;
 }
