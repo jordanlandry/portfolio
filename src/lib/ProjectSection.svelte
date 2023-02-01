@@ -13,11 +13,6 @@
 </div>
 
 <style>
-  /* .project-title {
-    font-size: 5rem;
-    margin: 0;
-  } */
-
   .project-wrapper {
     display: flex;
     justify-content: center;

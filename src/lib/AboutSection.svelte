@@ -4,7 +4,11 @@
   let element:HTMLElement = null;
   let fixPosition = false;
 
+  // This will be the percentage of completion of the animation (0-1)
   let scrollPercent = 0;
+
+  // Year I started Programming to automatically update the number of years I've been coding for
+  const STARTING_YEAR = 2016;
 
   onMount(() => {
     element = document.getElementById("about-section");
@@ -29,13 +33,13 @@
   {#if scrollPercent > 0 && scrollPercent < 1}
     <div class="{fixPosition ? "fixed" : "unfixed"}" style="opacity: {1 - scrollPercent}; transform: translate(-50%, -50%) scale({1 - (scrollPercent / 2)})">
       <h2>About Me</h2>
-      <p>Front-end developer lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, fugit.</p>
+      <p>With over {new Date(Date.now()).getFullYear() -  STARTING_YEAR} years of programming experience, I specialize in front-end development with React, Typescript, Vue, and Svelte and have some experience with Express. I also have extensive experience in Java, C#, C++ and Python.</p>
     </div>
   {/if}
   {#if !(scrollPercent > 0 && scrollPercent < 1)}
     <div class="{fixPosition ? "fixed" : "unfixed"}" style="opacity: {1 - scrollPercent}; transform: translate(-50%, -50%)">
       <h2>About Me</h2>
-      <p>Front-end developer lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, fugit.</p>
+      <p>With over {new Date(Date.now()).getFullYear() -  STARTING_YEAR} years of programming experience, I specialize in front-end development with React, Typescript, Vue, and Svelte and have some experience with Express. I also have extensive experience in Java, C#, C++ and Python.</p>
     </div>
   {/if}
 </div>

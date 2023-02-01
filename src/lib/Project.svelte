@@ -11,19 +11,25 @@
   export let skills: string[];
   export let index: number;
 
-  // Functions
+  // Scroll the images at different speeds to create a parallax effect
   const imageScrollSpeeds = images.map((_, i) =>  1 + (images.length - i * 4));
 
+  // The gap between the images and the info on the grid
+  const GRID_GAP = 10;  
+
+  // Elements
   let lastImageElement:HTMLElement = null;
+  let element:HTMLElement = null;
+
+  // Gets the width of the full grid so we can set the size of the fixed element properly
+  let elementWidth = 0;  
+
   
   // When scrolled through 50% of the image, start fading out the image
   let bottomOfLastImage = 0;
   let imageFadeOut = 0;
 
-  let elementWidth = 0;
-
   let top = 0;
-  let element:HTMLElement = null;
   const handleScroll = (e:any) => {
     top = element.getBoundingClientRect().top;
     elementWidth = element.getBoundingClientRect().width;
@@ -70,41 +76,34 @@
 
 </script>
 
-<div class=project id="project-{index}">
-    <!-- Invisible div to fill spacing -->
-    <!-- <div class=invisible id="invisible-{index}">
+<div class=project id="project-{index}" style="gap: {GRID_GAP}px">
+  {#each Array(2) as _, i}
+    <div  class="{i === 0 ? 'fixed' : 'invisible'}" style="{
+            i === 0 ? 
+              `top: ${top - (top * imageFadeOut)}px; 
+              opacity: ${1 - imageFadeOut}; 
+              width: ${elementWidth / 2 - GRID_GAP}px` 
+            : ''}">
+
       <h3>{name}</h3>
-      <p>{description}</p>
-      <ul class=unstyled-list>
+
+      <ul class="unstyled-list skill-wrapper">
         {#each skills as skill}
-        <li>{skill}</li>
+          <li>{skill}</li>
         {/each}
       </ul>
-      
-      <ul class="unstyled-list">
-        <li><a href={githubLink} target=_blank rel=noreferrer>View on Github</a></li>
-        <li><a href={liveLink} target=_blank rel=noreferrer>View a demo</a></li>
-      </ul>
-    </div> -->
 
+      <p>{description}</p>
     
-    {#each Array(2) as _, i}
-      <div class="{i === 0 ? 'fixed' : 'invisible'}" style="{i === 0 ? `top: ${top - (top * imageFadeOut)}px; opacity: ${1 - imageFadeOut}; width: ${elementWidth / 2}px` : ''}">
-        <h3>{name}</h3>
-        <ul class="unstyled-list skill-wrapper">
-          {#each skills as skill}
-            <li>{skill}</li>
-          {/each}
-        </ul>
-        <p>{description}</p>
-      
-        <div class=link-wrapper>
-          <a href={githubLink} target=_blank rel=noreferrer>View on Github</a>
-          <a href={liveLink} target=_blank rel=noreferrer>View a demo</a>
-        </div>
+      <div class=link-wrapper>
+        <a href={githubLink} target=_blank rel=noreferrer>View on Github</a>
+        <a href={liveLink} target=_blank rel=noreferrer>View a demo</a>
       </div>
-    {/each}
 
+    </div>
+  {/each}
+
+  <!-- style="order: {index % 2 === 0 ? '1' : '-1'}" -->
   <div class=images>
     {#each images as image, i}
       <img src={image} alt={name} id="image-{index}-{i}"/>
@@ -180,6 +179,4 @@
       grid-template-columns: 1fr;
     }
   }
-
-
 </style>
