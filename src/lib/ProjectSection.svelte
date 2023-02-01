@@ -4,10 +4,10 @@
 
 </script>
 
-<div class="project-wrapper section">
-  <div class=projects>
+<div class="project-wrapper">
+  <div class="projects section">
     {#each projects as project, i}
-    <Project {...project} index={i} />
+      <Project {...project} index={i} />
     {/each}
   </div>
 </div>
@@ -31,6 +31,6 @@
   .projects {
     display: flex;
     flex-direction: column;
-    gap: 25rem;
+    gap: 50vw;
   }
 </style>

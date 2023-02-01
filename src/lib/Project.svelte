@@ -2,6 +2,7 @@
   import { onDestroy, onMount } from "svelte";
   import { get_custom_elements_slots } from "svelte/internal";
 
+  // Props
   export let name: string;
   export let description: string;
   export let githubLink: string;
@@ -10,102 +11,175 @@
   export let skills: string[];
   export let index: number;
 
-  let show = true;
-
-
+  // Functions
   const imageScrollSpeeds = images.map((_, i) =>  1 + (images.length - i * 4));
-  let scrollPercent = 0;
 
-  let fixPosition = false;
+  let lastImageElement:HTMLElement = null;
+  
+  // When scrolled through 50% of the image, start fading out the image
+  let bottomOfLastImage = 0;
+  let imageFadeOut = 0;
+
+  let elementWidth = 0;
+
+  let top = 0;
   let element:HTMLElement = null;
   const handleScroll = (e:any) => {
-    const { top, height, bottom } = element.getBoundingClientRect();
-    if (top < window.innerHeight / 4 && bottom > height / images.length) fixPosition = true;
-    else fixPosition = false;
+    top = element.getBoundingClientRect().top;
+    elementWidth = element.getBoundingClientRect().width;
 
-    scrollPercent = (top / height) * 100;
+    // Lock the top element to 25% of the screen, and start fading out when the last image is 100px from the top of the screen
+    if (top < window.innerHeight * .25) top = window.innerHeight * .25;
+    if (bottomOfLastImage < 100) imageFadeOut = 1 - (bottomOfLastImage / 100);
+    else imageFadeOut = 0;
+
+    // Update sizing
+    bottomOfLastImage = lastImageElement.getBoundingClientRect().bottom;
+
+    // If the bottom of the last image is halfway above the top of the screen, start fading out the image
+    imageFadeOut = 1 - (bottomOfLastImage / window.innerHeight * 2);
+    if (imageFadeOut < 0) imageFadeOut = 0;
+  }
+
+  // Update the sizing when the window is resized
+  const handleResize = () => {
+    bottomOfLastImage = lastImageElement.getBoundingClientRect().bottom;
+    elementWidth = element.getBoundingClientRect().width;
   }
 
   onMount(() => {
     window.addEventListener('scroll', handleScroll); 
+    window.addEventListener('resize', handleResize); 
     element = document.getElementById("project-" + index);
+
+    // I use this to determine when to start fading out the information tab
+    lastImageElement = document.getElementById("image-" + index + "-" + (images.length - 1));
+    bottomOfLastImage = lastImageElement.getBoundingClientRect().bottom;
+
+    // To help with the position fixed top attribute
+    top = element.getBoundingClientRect().top;
+
+    // To set the width of the position fixed
+    elementWidth = element.getBoundingClientRect().width;
   });
 
   onDestroy(() => {
     window.removeEventListener('scroll', handleScroll);
+    window.removeEventListener('resize', handleResize);
   });
-  
 
 </script>
 
 <div class=project id="project-{index}">
-  {#if fixPosition}
-    <div class=invisible></div>
-  {/if}
-
-  <div class="project-info {fixPosition ? "project-info-fixed" : ""}">
-    <h3>{name}</h3>
-    <p>{description}</p>
-    <ul class="unstyled-list project-skills">
-      {#each skills as skill}
+    <!-- Invisible div to fill spacing -->
+    <!-- <div class=invisible id="invisible-{index}">
+      <h3>{name}</h3>
+      <p>{description}</p>
+      <ul class=unstyled-list>
+        {#each skills as skill}
         <li>{skill}</li>
-      {/each}
-    </ul>
-    <a href={githubLink} rel=noreferrer target=_blank>Github</a>
-    <a href={liveLink} rel=noreferrer target=_blank>Live</a>
-  </div>
+        {/each}
+      </ul>
+      
+      <ul class="unstyled-list">
+        <li><a href={githubLink} target=_blank rel=noreferrer>View on Github</a></li>
+        <li><a href={liveLink} target=_blank rel=noreferrer>View a demo</a></li>
+      </ul>
+    </div> -->
 
-  <div class=img-wrapper>
+    
+    {#each Array(2) as _, i}
+      <div class="{i === 0 ? 'fixed' : 'invisible'}" style="{i === 0 ? `top: ${top - (top * imageFadeOut)}px; opacity: ${1 - imageFadeOut}; width: ${elementWidth / 2}px` : ''}">
+        <h3>{name}</h3>
+        <ul class="unstyled-list skill-wrapper">
+          {#each skills as skill}
+            <li>{skill}</li>
+          {/each}
+        </ul>
+        <p>{description}</p>
+      
+        <div class=link-wrapper>
+          <a href={githubLink} target=_blank rel=noreferrer>View on Github</a>
+          <a href={liveLink} target=_blank rel=noreferrer>View a demo</a>
+        </div>
+      </div>
+    {/each}
+
+  <div class=images>
     {#each images as image, i}
-      <!-- <img src={image} alt={name} class=project-image style="transform: translateY({scrollPercent * imageScrollSpeeds[i]}px); z-index: {images.length - i}; position: relative" /> -->
-      <img src={image} alt={name} class=project-image />
+      <img src={image} alt={name} id="image-{index}-{i}"/>
     {/each}
   </div>
 </div>
 
 <style>
-  /* .img-wrapper { */
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    overflow: hidden; */
-  /* } */
-
-  .project-info-fixed {
-    position: fixed;
-    top: 25%;
-    width: min(1000px, 37%);
-  }
-
   .invisible {
-    width: 50%;
-    height: 100%;
-
     opacity: 0;
   }
 
   .project {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 25px;
+  }
 
-    margin-bottom: 100vh;
+  .fixed {
+    position: fixed;
+    z-index: 10;
+  }
+
+  .skill-wrapper {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .skill-wrapper > li {
+    background-color: rgb(240, 240, 240);
+    color: var(--color-white);
+    border-radius: 2px;
+    padding: 0.5rem 1rem;
+  }
+
+  .link-wrapper {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .link-wrapper > a {
+    border: 1px solid black;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+
+    text-decoration: none;
+    color: black;
+
+    transition: 0.2s;
+  }
+
+  .link-wrapper > a:hover {
+    background-color: black;
+    color: white;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  h3 {
+    font-size: 3rem;
+    font-weight: 100;
   }
 
   p {
     font-size: 1.5rem;
   }
 
-  .project img {
-    width: 100%;
-    object-fit: cover;
+  @media screen and (max-width: 768px) {
+    .project {
+      grid-template-columns: 1fr;
+    }
   }
 
-  .project-info > h3 {
-    font-size: 3.5rem;
-    font-weight: 100;
-  }
-  
+
 </style>
