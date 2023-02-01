@@ -13,7 +13,7 @@
   let show = true;
 
 
-  const imageScrollSpeeds = images.map((_, i) =>  1 + (0.5 * i));
+  const imageScrollSpeeds = images.map((_, i) =>  1 + (images.length - i * 4));
   let scrollPercent = 0;
 
   let fixPosition = false;
@@ -55,15 +55,24 @@
     <a href={liveLink} rel=noreferrer target=_blank>Live</a>
   </div>
 
-  <div>
+  <div class=img-wrapper>
     {#each images as image, i}
-      <!-- <img src={image} alt={name} class=project-image style="transform: translateY({500 - scrollPercent * imageScrollSpeeds[i]}px)" /> -->
+      <!-- <img src={image} alt={name} class=project-image style="transform: translateY({scrollPercent * imageScrollSpeeds[i]}px); z-index: {images.length - i}; position: relative" /> -->
       <img src={image} alt={name} class=project-image />
     {/each}
   </div>
 </div>
 
 <style>
+  /* .img-wrapper { */
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; */
+  /* } */
+
   .project-info-fixed {
     position: fixed;
     top: 25%;
@@ -81,6 +90,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 25px;
+
+    margin-bottom: 100vh;
   }
 
   p {
