@@ -4,7 +4,6 @@ import rubiksCubeImage from "../assets/rubiks-cube.png";
 import chess1 from "../assets/chess/chess1.png";
 import chess2 from "../assets/chess/chess2.png";
 import chess3 from "../assets/chess/chess3.png";
-import chess4 from "../assets/chess/chess4.png";
 
 import janninscript1 from "../assets/janninscript/janninscript1.png";
 import janninscript2 from "../assets/janninscript/janninscript2.png";
@@ -34,7 +33,7 @@ const projects = [
     skills: ["React", "TypeScript", "Algorithms"],
     githubLink: "https://github.com/jordanlandry/chess-with-minimax",
     liveLink: "https://jordanlandry.github.io/chess-with-minimax",
-    images: [chess1, chess2, chess3, chess4],
+    images: [chess1, chess2, chess3],
   },
   {
     name: "JanninScript",

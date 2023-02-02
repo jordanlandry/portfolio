@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
-  import { get_custom_elements_slots } from "svelte/internal";
 
   // Props
   export let name: string;
@@ -12,23 +11,22 @@
   export let index: number;
 
   // Scroll the images at different speeds to create a parallax effect
-  const imageScrollSpeeds = images.map((_, i) =>  1 + (images.length - i * 4));
-
+  let imageScale = images.map((_, i) => 1);
+  
   // The gap between the images and the info on the grid
   const GRID_GAP = 10;  
-
+  
   // Elements
   let lastImageElement:HTMLElement = null;
   let element:HTMLElement = null;
-
+  
   // Gets the width of the full grid so we can set the size of the fixed element properly
-  let elementWidth = 0;  
-
+  let elementWidth = 0;
   
   // When scrolled through 50% of the image, start fading out the image
   let bottomOfLastImage = 0;
   let imageFadeOut = 0;
-
+  
   let top = 0;
   const handleScroll = (e:any) => {
     top = element.getBoundingClientRect().top;
@@ -45,6 +43,21 @@
     // If the bottom of the last image is halfway above the top of the screen, start fading out the image
     imageFadeOut = 1 - (bottomOfLastImage / window.innerHeight * 2);
     if (imageFadeOut < 0) imageFadeOut = 0;
+
+
+    // Update image scale
+    imageScale = images.map((_, i) => {
+      const imageElement = document.getElementById(`image-${index}-${i}`);
+      const imageTop = imageElement.getBoundingClientRect().top;
+      const imageBottom = imageElement.getBoundingClientRect().bottom;
+      const imageHeight = imageElement.getBoundingClientRect().height;
+
+      // If the image is above the top of the screen, scale it down
+      const val = 1 - (-imageTop / imageHeight);
+      if (imageTop < 0 && val > 0) return val;
+      else if (imageTop < 0) return 0;
+      else return 1
+    });
   }
 
   // Update the sizing when the window is resized
@@ -106,7 +119,7 @@
   <!-- style="order: {index % 2 === 0 ? '1' : '-1'}" -->
   <div class=images>
     {#each images as image, i}
-      <img src={image} alt={name} id="image-{index}-{i}"/>
+      <img src={image} alt={name} id="image-{index}-{i}" style="transform: scale({imageScale[i]}); opacity: {imageScale[i]}"/>
     {/each}
   </div>
 </div>
@@ -124,6 +137,12 @@
   .fixed {
     position: fixed;
     z-index: 10;
+  }
+
+  .images {
+    display: flex;
+    flex-direction: column;
+    gap: 50vh;
   }
 
   .skill-wrapper {

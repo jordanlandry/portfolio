@@ -33,13 +33,13 @@
   {#if scrollPercent > 0 && scrollPercent < 1}
     <div class="{fixPosition ? "fixed" : "unfixed"}" style="opacity: {1 - scrollPercent}; transform: translate(-50%, -50%) scale({1 - (scrollPercent / 2)})">
       <h2>About Me</h2>
-      <p>With over {new Date(Date.now()).getFullYear() -  STARTING_YEAR} years of programming experience, I specialize in front-end development with React, Typescript, Vue, and Svelte and have some experience with Express. I also have extensive experience in Java, C#, C++ and Python.</p>
+      <p>With over {new Date(Date.now()).getFullYear() -  STARTING_YEAR} years of programming experience, I specialize in front-end development with React, Typescript, Vue, and Svelte and have experience with Express. I also have extensive experience in Java, C#, C, C++ and Python.</p>
     </div>
   {/if}
   {#if !(scrollPercent > 0 && scrollPercent < 1)}
     <div class="{fixPosition ? "fixed" : "unfixed"}" style="opacity: {1 - scrollPercent}; transform: translate(-50%, -50%)">
       <h2>About Me</h2>
-      <p>With over {new Date(Date.now()).getFullYear() -  STARTING_YEAR} years of programming experience, I specialize in front-end development with React, Typescript, Vue, and Svelte and have some experience with Express. I also have extensive experience in Java, C#, C++ and Python.</p>
+      <p>With over {new Date(Date.now()).getFullYear() -  STARTING_YEAR} years of programming experience, I specialize in front-end development with React, Typescript, Vue, and Svelte and have experience with Express. I also have extensive experience in Java, C#, C, C++ and Python.</p>
     </div>
   {/if}
 </div>
