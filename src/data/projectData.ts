@@ -1,4 +1,3 @@
-import minecraftImage from "../assets/minecraft.png";
 import rubiksCubeImage from "../assets/rubiks-cube.png";
 
 import chess1 from "../assets/chess/chess1.png";
@@ -17,9 +16,12 @@ import netflix2 from "../assets/netflix/netflix2.png";
 import netflix3 from "../assets/netflix/netflix3.png";
 import netflix4 from "../assets/netflix/netflix4.png";
 
-// import minecraft1 from "../assets/minecraft/minecraft1.png";
-// import minecraft2 from "../assets/minecraft/minecraft2.png";
-// import minecraft3 from "../assets/minecraft/minecraft3.png";
+import golf1 from "../assets/golf/golf1.png";
+import golf2 from "../assets/golf/golf2.png";
+import golf3 from "../assets/golf/golf3.png";
+import golf4 from "../assets/golf/golf4.png";
+import golf5 from "../assets/golf/golf5.png";
+import golf6 from "../assets/golf/golf6.png";
 
 // import rubiksCube1 from "../assets/rubiks-cube/rubiks-cube1.png";
 // import rubiksCube2 from "../assets/rubiks-cube/rubiks-cube2.png";
@@ -63,13 +65,13 @@ const projects = [
     images: [netflix1, netflix3, netflix2, netflix4],
   },
   {
-    name: "Minecraft In C++",
+    name: "Golf Without Your Friends",
     description:
-      "Created in C++ and utilizing OpenGL, this project is a 3D mini-Minecraft. The game features infinite terrain and biome generation using Perlin Noise. Optimizations such as culling, instancing, and chunking ensure smooth and seamless gameplay. This project was a personal challenge to learn and utilize the OpenGL framework and to test and improve my optimization and algorithm skills.",
-    skills: ["C++", "OpenGL", "Algorithms"],
-    githubLink: "https://github.com/jordanlandry/minecraft-in-cpp",
-    liveLink: "",
-    images: [minecraftImage],
+      "A mini-putt game, developed in Unity and C#, which offers a challenging gaming experience. This project was an opportunity for me to learn a new framework and language, as well as explore 3D modeling using Blender. Realistic physics and lighting, add to the overall realism of the game. All levels were created using Blender. A YouTube video documenting the development of the game can be found on the Github repository.",
+    skills: ["C#", "Unity", "Blender", "3D Modeling", "Game Design"],
+    githubLink: "https://github.com/jordanlandry/golf-without-your-friends",
+    liveLink: "https://github.com/jordanlandry/Golf-Without-Your-Friends/releases/tag/v1.0.0",
+    images: [golf1, golf2, golf3, golf4, golf5, golf6],
   },
   {
     name: "Rubiks Cube Solver",
