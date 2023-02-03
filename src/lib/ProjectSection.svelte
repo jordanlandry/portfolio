@@ -6,21 +6,23 @@
 
 </script>
 
-<div class="project-wrapper">
-  <div class="projects section">
-    {#each projects as project, i}
+<div>
+
+  <div class=project-wrapper>
+    <div class="projects section">
+      {#each projects as project, i}
       <Project {...project} index={i} />
-    {/each}
+      {/each}
+    </div>
   </div>
 
   <div class="other-projects section">
     <h2>Other Projects</h2>
     <div class="other-projects-wrapper">
       {#each otherProjects as project}
-        <OtherProject {...project} />
+      <OtherProject {...project} />
       {/each}
     </div>
-
   </div>
 </div>
 
@@ -44,10 +46,9 @@
   /* Other projects */
   .other-projects-wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
     grid-auto-rows: 1fr;
     gap: 3rem;
-    box-sizing: border-box;
   }
 
   .other-projects > h2 {

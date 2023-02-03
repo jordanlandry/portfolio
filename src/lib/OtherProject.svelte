@@ -40,6 +40,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  width: inherit;
   gap: 5px;
   /* justify-content: space-around; */
 
