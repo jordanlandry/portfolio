@@ -42,8 +42,6 @@
   flex-direction: column;
   width: inherit;
   gap: 5px;
-  /* justify-content: space-around; */
-
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);
   padding: 10px;
 }
