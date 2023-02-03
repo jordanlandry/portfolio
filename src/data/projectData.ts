@@ -1,5 +1,3 @@
-import rubiksCubeImage from "../assets/rubiks-cube.png";
-
 import chess1 from "../assets/chess/chess1.png";
 import chess2 from "../assets/chess/chess2.png";
 import chess3 from "../assets/chess/chess3.png";
@@ -71,17 +69,17 @@ const projects = [
     skills: ["C#", "Unity", "Blender", "3D Modeling", "Game Design"],
     githubLink: "https://github.com/jordanlandry/golf-without-your-friends",
     liveLink: "https://github.com/jordanlandry/Golf-Without-Your-Friends/releases/tag/v1.0.0",
-    images: [golf1, golf2, golf3, golf4, golf5, golf6],
+    images: [golf3, golf4, golf5, golf6],
   },
-  {
-    name: "Rubiks Cube Solver",
-    description:
-      "A 3D Rubik's cube, created using the ThreeJS framework, offering an interactive and fun experience for users. The cube can be scrambled and then solved in an animated fashion by the computer, using a choice of multiple solving methods. The size of the Rubik's cube can also be adjusted for added customization. This project was a learning experience in 3D development within the web browser and a hands-on exploration of the capabilities of the ThreeJS framework.",
-    skills: ["TypeScript", "Algorithms", "Three.js"],
-    githubLink: "https://github.com/jordanlandry/rubiks-cube-solver",
-    liveLink: "https://jordanlandry.github.io/rubiks-cube-solver/",
-    images: [rubiksCubeImage],
-  },
+  // {
+  //   name: "Rubiks Cube Solver",
+  //   description:
+  //     "A 3D Rubik's cube, created using the ThreeJS framework, offering an interactive and fun experience for users. The cube can be scrambled and then solved in an animated fashion by the computer, using a choice of multiple solving methods. The size of the Rubik's cube can also be adjusted for added customization. This project was a learning experience in 3D development within the web browser and a hands-on exploration of the capabilities of the ThreeJS framework.",
+  //   skills: ["TypeScript", "Algorithms", "Three.js"],
+  //   githubLink: "https://github.com/jordanlandry/rubiks-cube-solver",
+  //   liveLink: "https://jordanlandry.github.io/rubiks-cube-solver/",
+  //   images: [rubiksCubeImage],
+  // },
 ];
 
 export default projects;
