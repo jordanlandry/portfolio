@@ -5,6 +5,7 @@ import uiDesigner from "../assets/icons/ui-designer.png";
 import coolSort from "../assets/icons/cool-sort.png";
 import minesweeper from "../assets/icons/minesweeper.png";
 import pong from "../assets/icons/pong.png";
+import wordleBot from "../assets/icons/wordle-bot.png";
 
 // This is for other project that don't need a full description
 const otherProjects = [
@@ -63,6 +64,14 @@ const otherProjects = [
     githubLink: "https://github.com/jordanlandry/pong",
     icon: pong,
     languageIcon: "https://cdn.worldvectorlogo.com/logos/logo-javascript.svg",
+  },
+  {
+    name: "Wordle Bot",
+    description: "An AI bot for the popular game Wordle.",
+    language: "Python",
+    githubLink: "https://github.com/jordanlandry/wordle-bot",
+    icon: wordleBot,
+    languageIcon: "https://cdn.worldvectorlogo.com/logos/python-5.svg",
   },
 ];
 

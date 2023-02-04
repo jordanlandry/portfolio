@@ -11,7 +11,7 @@
   export let index: number;
 
   // Scroll the images at different speeds to create a parallax effect
-  let imageScale = images.map((_, i) => 1);
+  let animPercent = images.map((_, i) => 1);
   
   // The gap between the images and the info on the grid
   const GRID_GAP = 10;  
@@ -26,6 +26,8 @@
   // When scrolled through 50% of the image, start fading out the image
   let bottomOfLastImage = 0;
   let imageFadeOut = 0;
+
+  const PAUSE_AT = 0.15; // Stop translating the info at this percentage of the scroll
   
   let top = 0;
   const handleScroll = (e:any) => {
@@ -33,7 +35,7 @@
     elementWidth = element.getBoundingClientRect().width;
 
     // Lock the top element to 25% of the screen, and start fading out when the last image is 100px from the top of the screen
-    if (top < window.innerHeight * .25) top = window.innerHeight * .25;
+    if (top < window.innerHeight * PAUSE_AT) top = window.innerHeight * PAUSE_AT;
     if (bottomOfLastImage < 100) imageFadeOut = 1 - (bottomOfLastImage / 100);
     else imageFadeOut = 0;
 
@@ -46,16 +48,18 @@
 
 
     // Update image scale
-    imageScale = images.map((_, i) => {
+    animPercent = images.map((_, i) => {
       const imageElement = document.getElementById(`image-${index}-${i}`);
       const imageTop = imageElement.getBoundingClientRect().top;
       const imageBottom = imageElement.getBoundingClientRect().bottom;
       const imageHeight = imageElement.getBoundingClientRect().height;
 
+      const max = window.innerHeight * 0.25;
+
       // If the image is above the top of the screen, scale it down
-      const val = 1 - (-imageTop / imageHeight);
-      if (imageTop < 0 && val > 0) return val;
-      else if (imageTop < 0) return 0;
+      const val = 1 - (-(imageTop -max) / imageHeight);
+      if (imageTop < max && val > 0) return val;
+      else if (imageTop < max) return 0;
       else return 1
     });
   }
@@ -90,6 +94,7 @@
 </script>
 
 <div class=project id="project-{index}" style="gap: {GRID_GAP}px">
+  <!-- Render an invisible one to make it still take up space for the position fixed element -->
   {#each Array(2) as _, i}
     <div  class="{i === 0 ? 'fixed' : 'invisible'}" style="{
             i === 0 ? 
@@ -119,7 +124,8 @@
   <!-- style="order: {index % 2 === 0 ? '1' : '-1'}" -->
   <div class=images>
     {#each images as image, i}
-      <img src={image} alt={name} id="image-{index}-{i}" style="transform: scale({imageScale[i]}); opacity: {imageScale[i]}"/>
+      <!-- <img src={image} alt={name} id="image-{index}-{i}" style="transform: scale({imageScale[i]}); opacity: {imageScale[i]}"/> -->
+      <img src={image} alt={name} id="image-{index}-{i}" style="transform: translateX({(1 - animPercent[i]) * window.innerWidth / 2}px); opacity: {animPercent[i]}"/>
     {/each}
   </div>
 </div>
@@ -190,7 +196,7 @@
   }
 
   p {
-    font-size: 1.5rem;
+    font-size: min(1.25vw, 2rem, 2.5vh);
   }
 
   @media screen and (max-width: 768px) {

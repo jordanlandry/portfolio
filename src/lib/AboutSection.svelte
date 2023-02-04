@@ -2,49 +2,93 @@
   import { onMount, onDestroy } from "svelte";
   // When the element reaches 50% of the viewport, set it to fixed and begin the animation
   let element:HTMLElement = null;
-  let fixPosition = false;
+  // let fixPosition = false;
 
   // This will be the percentage of completion of the animation (0-1)
-  let scrollPercent = 0;
+  // let scrollPercent = 0;
 
   // Year I started Programming to automatically update the number of years I've been coding for
   const STARTING_YEAR = 2016;
 
+  // Animation Settings
+  const startFadingOutAtPercent = 0.125;
+
+  let startingPosition = window.innerHeight * 1.5;
+  let startFadingOutAt = window.innerHeight * startFadingOutAtPercent;    // When topInPixels is less than this, start fading out
+
+  let topInPixels = startingPosition;
+  let animPercent = 0;
+
+  const handleResize = () => {
+    startingPosition = window.innerHeight * 1.5;
+    startFadingOutAt = window.innerHeight * startFadingOutAtPercent;
+  }
+
+  const handleScroll = () => {
+    topInPixels = startingPosition - scrollY;
+
+    const max = window.innerHeight - startFadingOutAt;
+    animPercent = (-topInPixels / max) + startFadingOutAtPercent;
+    animPercent = Math.min(1, Math.max(0, animPercent));
+
+    if (topInPixels <= startFadingOutAt) {
+      topInPixels = startFadingOutAt
+    };
+
+    animPercent /= 2;
+  }
+
   onMount(() => {
     element = document.getElementById("about-section");
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
   });
-
+  
   onDestroy(() => {
     window.removeEventListener('scroll', handleScroll);
+    window.removeEventListener('resize', handleResize);
   });
+  
 
-  const handleScroll = (e:any) => {
-    const { top, height, bottom } = element.getBoundingClientRect();
-    if (top < (window.innerHeight / 2 - height / 2)) fixPosition = true;
-    else fixPosition = false;
-
-    scrollPercent = (-top / height);
-  }
 
 </script>
-
-<div class=section id=about-section>
-  {#if scrollPercent > 0 && scrollPercent < 1}
-    <div class="{fixPosition ? "fixed" : "unfixed"}" style="opacity: {1 - scrollPercent}; transform: translate(-50%, -50%) scale({1 - (scrollPercent / 2)})">
-      <h2>About Me</h2>
-      <p>With over {new Date(Date.now()).getFullYear() -  STARTING_YEAR} years of programming experience, I specialize in front-end development with React, Typescript, Vue, and Svelte. Additionally, I have experience with Express and extensive experience in Java, C#, C, C++ and Python.</p>
+  {#each Array(2) as _, i}
+  <div id=about-section class="section {`${i % 2 ? 'fixed' : 'invisible'}`}" style="top: {topInPixels}px; height: {(startFadingOutAtPercent * 100) + 100}vh; opacity: {1 - animPercent};">
+    <div style={i % 2 ? `transform: scale(${1 - animPercent})`: ''}>
+      <h2 id=about-title>About Me</h2>
+      <p id=about-desc>With over {new Date(Date.now()).getFullYear() -  STARTING_YEAR} years of programming experience, I specialize in front-end development with React, Typescript, Vue, and Svelte. Additionally, I have experience with Express and extensive experience in Java, C#, C, C++ and Python.</p>
     </div>
-  {/if}
-  {#if !(scrollPercent > 0 && scrollPercent < 1)}
-    <div class="{fixPosition ? "fixed" : "unfixed"}" style="opacity: {1 - scrollPercent}; transform: translate(-50%, -50%)">
-      <h2>About Me</h2>
-      <p>With over {new Date(Date.now()).getFullYear() -  STARTING_YEAR} years of programming experience, I specialize in front-end development with React, Typescript, Vue, and Svelte. Additionally, I have experience with Express and extensive experience in Java, C#, C, C++ and Python.</p>
-    </div>
-  {/if}
-</div>
+  </div>
+  {/each}
+<!-- </div> -->
 
 <style>
+  #about-section h2 {
+    margin-bottom: 1rem;
+    
+    text-align: center;
+    font-weight: 100;
+    font-size: max(4vw, 3rem);
+  }
+
+  #about-section p {
+    font-size: max(2.5vw, 1.5rem);
+  }
+
+  .fixed {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .invisible {
+    margin-top: 100vh;
+    opacity: 0 !important;
+  }
+
+</style>
+
+<!-- <style>
   #about-section {
     margin-top: 100vh !important;   /* Give space for the position fixed section above */
     height: 100vh;
@@ -74,4 +118,4 @@
     width: var(--section-width);
   }
 
-</style>
+</style> -->
