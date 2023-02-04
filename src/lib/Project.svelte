@@ -46,12 +46,10 @@
     imageFadeOut = 1 - (bottomOfLastImage / window.innerHeight * 2);
     if (imageFadeOut < 0) imageFadeOut = 0;
 
-
     // Update image scale
     animPercent = images.map((_, i) => {
       const imageElement = document.getElementById(`image-${index}-${i}`);
       const imageTop = imageElement.getBoundingClientRect().top;
-      const imageBottom = imageElement.getBoundingClientRect().bottom;
       const imageHeight = imageElement.getBoundingClientRect().height;
 
       const max = window.innerHeight * 0.25;
@@ -121,11 +119,9 @@
     </div>
   {/each}
 
-  <!-- style="order: {index % 2 === 0 ? '1' : '-1'}" -->
   <div class=images>
     {#each images as image, i}
-      <!-- <img src={image} alt={name} id="image-{index}-{i}" style="transform: scale({imageScale[i]}); opacity: {imageScale[i]}"/> -->
-      <img src={image} alt={name} id="image-{index}-{i}" style="transform: translateX({(1 - animPercent[i]) * window.innerWidth / 2}px); opacity: {animPercent[i]}"/>
+      <img src={image} alt={name} id="image-{index}-{i}" style="transform: translateX({(1 - animPercent[i]) * window.innerWidth / 2}px) translateY({1}px); opacity: {animPercent[i]}" />
     {/each}
   </div>
 </div>

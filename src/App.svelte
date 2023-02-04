@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import AboutSection from './lib/AboutSection.svelte';
+  import Contact from './lib/Contact.svelte';
   import NameSection from './lib/NameSection.svelte';
   import ProjectSection from './lib/ProjectSection.svelte';
 
@@ -37,6 +38,7 @@
   <NameSection />  
   <AboutSection />
   <ProjectSection />
+  <Contact />
 </main>
 
 <style>

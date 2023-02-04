@@ -21,10 +21,6 @@ import golf4 from "../assets/golf/golf4.png";
 import golf5 from "../assets/golf/golf5.png";
 import golf6 from "../assets/golf/golf6.png";
 
-// import rubiksCube1 from "../assets/rubiks-cube/rubiks-cube1.png";
-// import rubiksCube2 from "../assets/rubiks-cube/rubiks-cube2.png";
-// import rubiksCube3 from "../assets/rubiks-cube/rubiks-cube3.png";
-
 const projects = [
   {
     name: "Chess With Minimax",

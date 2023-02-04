@@ -2,7 +2,6 @@
   import { onMount, onDestroy } from "svelte";
   // When the element reaches 50% of the viewport, set it to fixed and begin the animation
   let element:HTMLElement = null;
-  // let fixPosition = false;
 
   // This will be the percentage of completion of the animation (0-1)
   // let scrollPercent = 0;
@@ -29,13 +28,11 @@
 
     const max = window.innerHeight - startFadingOutAt;
     animPercent = (-topInPixels / max) + startFadingOutAtPercent;
-    animPercent = Math.min(1, Math.max(0, animPercent));
-
-    if (topInPixels <= startFadingOutAt) {
-      topInPixels = startFadingOutAt
-    };
-
+    
+    if (topInPixels <= startFadingOutAt) topInPixels = startFadingOutAt
+    
     animPercent /= 2;
+    animPercent = Math.min(1, Math.max(0, animPercent));
   }
 
   onMount(() => {
@@ -48,21 +45,20 @@
     window.removeEventListener('scroll', handleScroll);
     window.removeEventListener('resize', handleResize);
   });
-  
-
-
 </script>
-  {#each Array(2) as _, i}
+
+
+{#each Array(2) as _, i}
   <div id=about-section class="section {`${i % 2 ? 'fixed' : 'invisible'}`}" style="top: {topInPixels}px; height: {(startFadingOutAtPercent * 100) + 100}vh; opacity: {1 - animPercent};">
     <div style={i % 2 ? `transform: scale(${1 - animPercent})`: ''}>
       <h2 id=about-title>About Me</h2>
-      <p id=about-desc>With over {new Date(Date.now()).getFullYear() -  STARTING_YEAR} years of programming experience, I specialize in front-end development with React, Typescript, Vue, and Svelte. Additionally, I have experience with Express and extensive experience in Java, C#, C, C++ and Python.</p>
+      <p id=about-desc>With over {new Date(Date.now()).getFullYear() -  STARTING_YEAR} years of programming experience, I specialize in front-end development with React, Typescript, Vue, and Svelte. Additionally, I have back-end experience with Express along with MongoDB, and extensive programming experience in Java, C#, C, C++ and Python.</p>
     </div>
   </div>
-  {/each}
-<!-- </div> -->
+{/each}
 
 <style>
+
   #about-section h2 {
     margin-bottom: 1rem;
     
@@ -83,6 +79,7 @@
 
   .invisible {
     margin-top: 100vh;
+    margin-bottom: 50vh;
     opacity: 0 !important;
   }
 

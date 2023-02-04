@@ -9,6 +9,7 @@
 
   const MOBILE_WIDTH_THRESHOLD = 1000; // px
   let showMobile = window.innerWidth < MOBILE_WIDTH_THRESHOLD;
+  
   const handleResize = () => {
     showMobile = window.innerWidth < MOBILE_WIDTH_THRESHOLD;
   };
