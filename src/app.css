@@ -4,6 +4,15 @@
   font-family: "Montserrat", sans-serif;
 
   --section-width: min(2000px, 75%);
+
+  /* Sizing */
+  /* --text-s: 0.75rem;
+  --text-m: 1rem;
+  --text-l: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-xxl: 2rem;
+  --text-xxxl: 3rem;
+  --text-max: 4rem; */
 }
 
 h1,
@@ -30,4 +39,10 @@ body {
   position: relative;
 
   background-color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    width: 95% !important;
+  }
 }

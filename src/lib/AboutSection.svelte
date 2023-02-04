@@ -70,7 +70,7 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    z-index: 100;  /* Give space for the position fixed section below */
+    z-index: 100; 
     width: var(--section-width);
   }
 

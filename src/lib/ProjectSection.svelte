@@ -4,29 +4,63 @@
   import projects from "../data/projectData";
   import otherProjects from "../data/otherProjectData";
 
+  import { onDestroy, onMount } from "svelte";
+  import ProjectMobile from "./ProjectMobile.svelte";
+
+  const MOBILE_WIDTH_THRESHOLD = 1000; // px
+  let showMobile = window.innerWidth < MOBILE_WIDTH_THRESHOLD;
+  const handleResize = () => {
+    showMobile = window.innerWidth < MOBILE_WIDTH_THRESHOLD;
+  };
+
+  onMount(() => {
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  })
+
+  onDestroy(() => {
+    window.removeEventListener('resize', handleResize);
+  })
+
 </script>
 
 <div>
+  {#if showMobile}
+  <div class=project-mobile-wrapper>
+    <div class="projects-mobile section">
 
-  <div class=project-wrapper>
-    <div class="projects section">
       {#each projects as project, i}
-      <Project {...project} index={i} />
+      <ProjectMobile {...project} />
       {/each}
     </div>
   </div>
+  {:else}
+  <div class=project-wrapper>
+    <div class="projects section">
+      {#each projects as project, i}
+        <Project {...project} index={i} />
+      {/each}
+    </div>
+  </div>
+  {/if}
 
   <div class="other-projects section">
     <h2>Other Projects</h2>
     <div class="other-projects-wrapper">
       {#each otherProjects as project}
-      <OtherProject {...project} />
+        <OtherProject {...project} />
       {/each}
     </div>
   </div>
 </div>
 
 <style>
+  .project-mobile-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 10rem;
+  }
+
   .project-wrapper {
     display: flex;
     justify-content: center;
@@ -35,6 +69,8 @@
     margin: 0 auto;
     width: 100%;
     gap: 10rem;
+
+    margin-bottom: 50vh;
   }
 
   .projects {
