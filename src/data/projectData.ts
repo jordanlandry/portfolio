@@ -64,18 +64,9 @@ const projects = [
       "A mini-putt game, developed in Unity and C#, which offers a challenging gaming experience. This project was an opportunity for me to learn a new framework and language, as well as explore 3D modeling using Blender. Realistic physics and lighting, add to the overall realism of the game. All levels were created using Blender. A YouTube video documenting the development of the game can be found on the Github repository.",
     skills: ["C#", "Unity", "Blender", "3D Modeling", "Game Design"],
     githubLink: "https://github.com/jordanlandry/golf-without-your-friends",
-    liveLink: "https://github.com/jordanlandry/Golf-Without-Your-Friends/releases/tag/v1.0.0",
+    liveLink: "https://jordanlandry.github.io/Golf-Without-Your-Friends/",
     images: [golf3, golf4, golf5, golf6],
   },
-  // {
-  //   name: "Rubiks Cube Solver",
-  //   description:
-  //     "A 3D Rubik's cube, created using the ThreeJS framework, offering an interactive and fun experience for users. The cube can be scrambled and then solved in an animated fashion by the computer, using a choice of multiple solving methods. The size of the Rubik's cube can also be adjusted for added customization. This project was a learning experience in 3D development within the web browser and a hands-on exploration of the capabilities of the ThreeJS framework.",
-  //   skills: ["TypeScript", "Algorithms", "Three.js"],
-  //   githubLink: "https://github.com/jordanlandry/rubiks-cube-solver",
-  //   liveLink: "https://jordanlandry.github.io/rubiks-cube-solver/",
-  //   images: [rubiksCubeImage],
-  // },
 ];
 
 export default projects;
