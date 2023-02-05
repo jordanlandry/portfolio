@@ -3,7 +3,7 @@ This is my official portfolio page containing a showcase of some of my programmi
 
 
 ## Check it out
-Check out the website! https://www.jordanlandry.github.io/portfolio
+Check out the website! https://jordanlandry.github.io/portfolio
 
 ## Built With
 - [Svelte](https://svelte.dev/) - Front-end Framework
