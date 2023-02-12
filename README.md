@@ -1,5 +1,5 @@
 # My Portfolio
-This is my official portfolio page containing a showcase of some of my programming projects, along with information on how to contact me.
+This is my official portfolio page containing a showcase of some of my programming projects, along with a lsist of skills and information on how to contact me.
 
 
 ## Check it out
