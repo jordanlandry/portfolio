@@ -3,7 +3,9 @@
   import AboutSection from './lib/AboutSection.svelte';
   import Contact from './lib/Contact.svelte';
   import NameSection from './lib/NameSection.svelte';
+  import Navbar from './lib/Navbar.svelte';
   import ProjectSection from './lib/ProjectSection.svelte';
+  import SkillSection from './lib/SkillSection.svelte';
 
 
   let languages = {};
@@ -35,8 +37,10 @@
 </script>
 
 <main>
+  <!-- <Navbar /> -->
   <NameSection />  
   <AboutSection />
+  <!-- <SkillSection /> -->
   <ProjectSection />
   <Contact />
 </main>
