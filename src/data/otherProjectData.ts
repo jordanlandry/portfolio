@@ -20,7 +20,7 @@ const otherProjects = [
   {
     name: "Rubiks Cube Solver",
     description: "Made with ThreeJs, a 3D animated Rubik's Cube solver.",
-    githubLink: "https://github.com/jordanlandry/rubiks-cube",
+    githubLink: "https://github.com/jordanlandry/threejs-rubiks-cube-solver",
     language: "TypeScript",
     icon: rubiksCube,
     languageIcon: "https://cdn.worldvectorlogo.com/logos/typescript.svg",
