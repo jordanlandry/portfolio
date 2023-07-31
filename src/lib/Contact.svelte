@@ -1,5 +1,5 @@
 <script>
-  const EMAIL_ADDRESS = "jordanlandry2001@gmail.com";
+  const EMAIL_ADDRESS = "jordan.g.landry@gmail.com";
   const LINKEDIN_URL = "https://www.linkedin.com/in/jordan-landry/";
   const GITHUB_URL = "https://www.github.com/jordanlandry";
 

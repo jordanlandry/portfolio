@@ -5,13 +5,15 @@
   export let language: string;
   export let icon: string;
   export let languageIcon: string;
+
+  const BASE_URL = "/portfolio/assets/otherProjects";
 </script>
 
 <div class=wrapper>
   <div class=name-wrapper>
     <h3 class="name">{name}</h3>
     <div class="icon">
-      <img src={icon} alt={name} />
+      <img src={BASE_URL + "/" + icon} alt={name} />
     </div>
   </div>
 

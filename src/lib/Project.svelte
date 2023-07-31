@@ -10,6 +10,9 @@
   export let skills: string[];
   export let index: number;
 
+
+  const BASE_URL = "/portfolio/assets";
+
   // Scroll the images at different speeds to create a parallax effect
   let animPercent = images.map((_, i) => 1);
   
@@ -121,7 +124,7 @@
 
   <div class=images>
     {#each images as image, i}
-      <img src={image} alt={name} id="image-{index}-{i}" style="transform: translateX({(1 - animPercent[i]) * window.innerWidth / 2}px) translateY({1}px); opacity: {animPercent[i]}" />
+      <img src={BASE_URL + '/' + image} alt={name} id="image-{index}-{i}" style="transform: translateX({(1 - animPercent[i]) * window.innerWidth / 2}px) translateY({1}px); opacity: {animPercent[i]}" />
     {/each}
   </div>
 </div>
