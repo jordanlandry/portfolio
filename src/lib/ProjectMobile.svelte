@@ -11,6 +11,7 @@
   export let liveLink: string;
   export let githubLink: string;
 
+  const BASE_URL = "/portfolio/assets";
 </script>
 
 <div class=wrapper>
@@ -23,9 +24,9 @@
   <p>{description}</p>
 
     <Carousel>
-      {#each images as image, i}
+      {#each images as image}
       <div class=img-wrapper>
-        <img src={image} alt={name} draggable="false"/>
+        <img src={BASE_URL + "/" + {image}} alt={name} draggable="false"/>
       </div>
       {/each}
     </Carousel>
